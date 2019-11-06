@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { AddBuffComponent } from './add-buff/add-buff.component';
+import { BuffListComponent } from './buff-list/buff-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    DropdownDirective
+    DropdownDirective,
+    AddBuffComponent,
+    BuffListComponent
   ],
   imports: [
     BrowserModule,
