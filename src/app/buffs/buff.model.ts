@@ -2,7 +2,7 @@ import { BuffValue } from './buffValue.model';
 
 export class Buff {
     public name: string;
-    public id: number;
+    public id: string;
     public duration: string;
     public type: string;
     public level: number;
@@ -10,7 +10,7 @@ export class Buff {
     public value: BuffValue[];
 
     constructor(name: string,
-                id: number,
+                id: string,
                 duration: string,
                 type: string,
                 level: number,
@@ -23,4 +23,5 @@ export class Buff {
             this.level = level;
             this.clas = clas;
             this.value = value;
+}
 }
