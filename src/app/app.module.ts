@@ -7,10 +7,9 @@ import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AddBuffComponent } from './add-buff/add-buff.component';
 import { BuffListComponent } from './buffs/buff-list/buff-list.component';
-import { BuffDetailComponent } from './buffs/buff-list/buff-detail/buff-detail.component';
+import { BuffDetailComponent } from './buffs/buff-detail/buff-detail.component';
 import { BuffsComponent } from './buffs/buffs.component';
-import { BuffItemComponent } from './buffs/buff-list/buff-item/buff-item.component';
-import { BuffService } from './buffs/buff.service';
+import { BuffItemIIComponent } from './buffs/buff-list/buff-item-ii/buff-item-ii.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { BuffService } from './buffs/buff.service';
     BuffListComponent,
     BuffDetailComponent,
     BuffsComponent,
-    BuffItemComponent,
-    BuffService
+    BuffItemIIComponent,
   ],
   imports: [
     BrowserModule,

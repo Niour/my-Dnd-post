@@ -27,6 +27,6 @@ export class BuffService {
       constructor() {}
 
       getBuffs() {
-          this.buffs.slice().subscribe();
+          this.buffs.slice();
       }
 }

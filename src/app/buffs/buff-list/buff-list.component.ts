@@ -10,7 +10,6 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./buff-list.component.css']
 })
 export class BuffListComponent implements OnInit {
-  @Output() BuffSelected = new EventEmitter<Buff>();
 
   buffs = [new Buff(
     'Bulls Strength',
@@ -30,10 +29,6 @@ export class BuffListComponent implements OnInit {
     [new BuffValue('dexterity', 'enchatment', 1, 'null', () => 2)])
   ];
   constructor() { }
-
-  onBuffClick() {
-    this.BuffSelected.emit();
-  }
 
   ngOnInit() {
   }
