@@ -9,8 +9,8 @@
             <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a routerLink="/recipes">Authenticate</a></li>
-                <li routerLinkActive="active"><a routerLink="/auth">Buff List</a></li>
-                <li routerLinkActive="active"><a routerLink="/shopping-list">Add Buff</a></li>
+                <li routerLinkActive="active"><a routerLink="/auth" (click)="onSelect('buff-list')">Buff List</a></li>
+                <li routerLinkActive="active"><a routerLink="/shopping-list" (click)="onSelect('buff')">Add Buff</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" appDropdown>

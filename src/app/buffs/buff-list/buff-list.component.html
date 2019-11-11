@@ -1,15 +1,7 @@
 <button class="btn btn-success"> New Buff </button>
 <hr>
 <div class="row">
-    <div class="col-xs-4">
-        <a href="#" class="list-group-item clearfix" *ngFor="let buff of buffs">
-            <h4 class="list-group-item-heading"> {{buff.name}}</h4>
-        </a>
-    </div>
-
-</div>
-<div class="row">
         <div class="col-xs-8">
-            <app-buff-item-ii></app-buff-item-ii>
+            <app-buff-item-ii *ngFor="let buff of buffs"></app-buff-item-ii>
         </div>
 </div>

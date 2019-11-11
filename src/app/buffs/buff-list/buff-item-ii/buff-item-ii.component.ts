@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Buff } from '../../buff.model';
 
 @Component({
   selector: 'app-buff-item-ii',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./buff-item-ii.component.css']
 })
 export class BuffItemIIComponent implements OnInit {
-
+  @Input() buff: Buff;
   constructor() { }
 
   ngOnInit() {
