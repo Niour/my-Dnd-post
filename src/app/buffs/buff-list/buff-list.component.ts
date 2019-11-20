@@ -2,10 +2,9 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Buff } from '../buff.model';
 import { RandomId } from '../../shared/helper';
 import { BuffValue } from '../buffValue.model';
-import { EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-buff-list',
+  selector: 'app-buff-listt',
   templateUrl: './buff-list.component.html',
   styleUrls: ['./buff-list.component.css']
 })
@@ -32,4 +31,5 @@ export class BuffListComponent implements OnInit {
 
   ngOnInit() {
   }
+
 }

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BuffListComponent } from './buffs/buff-list/buff-list.component';
+import { BuffsComponent } from './buffs/buffs.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/buffs', pathMatch: 'full'},
-  { path: 'buffs', component: BuffListComponent}
+  { path: '', redirectTo: '/test', pathMatch: 'full'},
+  { path: 'test', component: BuffsComponent}
 ];
 
 @NgModule({
