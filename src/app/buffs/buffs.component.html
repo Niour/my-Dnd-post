@@ -1,8 +1,16 @@
 <div class="row">
     <div class="col-md-5">
-        <app-buff-listt></app-buff-listt>
+        <app-buff-listt
+        (buffWasSelected)="selectedBuff = $event"></app-buff-listt>
     </div>
     <div class="col-md-7">
-        <app-buff-detail></app-buff-detail>
+        <app-buff-detail
+        *ngIf="selectedBuff; else infoText"
+        [buff]="selectedBuff"></app-buff-detail>
+        <ng-template #infoText>
+            <p>
+                Please select a recipe!
+            </p>
+        </ng-template>
 </div>
 

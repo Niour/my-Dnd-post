@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Buff } from './buff.model';
 
 @Component({
   selector: 'app-buffs',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./buffs.component.css']
 })
 export class BuffsComponent implements OnInit {
+  selectedBuff: Buff;
 
   constructor() { }
 

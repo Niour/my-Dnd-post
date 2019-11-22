@@ -7,6 +7,7 @@ import { Buff } from '../buff.model';
   styleUrls: ['./buff-detail.component.css']
 })
 export class BuffDetailComponent implements OnInit {
+  @Input() buff: Buff;
   constructor() { }
 
   ngOnInit() {

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loadedFeature = 'buff';
+  loadedFeature = 'buff-list';
   title = 'my-Dnd-post';
 
   onNavigate(feature: string) {

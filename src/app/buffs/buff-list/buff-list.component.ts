@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Buff } from '../buff.model';
 import { RandomId } from '../../shared/helper';
 import { BuffValue } from '../buffValue.model';
@@ -9,6 +9,7 @@ import { BuffValue } from '../buffValue.model';
   styleUrls: ['./buff-list.component.css']
 })
 export class BuffListComponent implements OnInit {
+  @Output() buffWasSelected = new EventEmitter<Buff>();
 
   buffs = [new Buff(
     'Bulls Strength',
@@ -30,6 +31,10 @@ export class BuffListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onBuffSelected(buff: Buff) {
+    this.buffWasSelected.emit(buff);
   }
 
 }

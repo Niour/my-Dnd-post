@@ -2,6 +2,10 @@
 <hr>
 <div class="row">
         <div class="col-xs-8">
-            <app-buff-item-ii *ngFor="let buff of buffs"></app-buff-item-ii>
+            <app-buff-item-ii 
+            *ngFor="let buffEl of buffs" 
+            [buff]="buffEl"
+            (buffSelected)="onBuffSelected(buffEl)">
+        </app-buff-item-ii>
         </div>
 </div>

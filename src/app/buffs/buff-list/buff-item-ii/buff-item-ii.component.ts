@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Buff } from '../../buff.model';
 
 @Component({
@@ -8,9 +8,14 @@ import { Buff } from '../../buff.model';
 })
 export class BuffItemIIComponent implements OnInit {
   @Input() buff: Buff;
+  @Output() buffSelected = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelected() {
+    this.buffSelected.emit();
   }
 
 }
