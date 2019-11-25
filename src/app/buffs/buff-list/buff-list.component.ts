@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Buff } from '../buff.model';
-import { RandomId } from '../../shared/helper';
-import { BuffValue } from '../buffValue.model';
+import { BuffService } from '../buff.service';
 
 @Component({
   selector: 'app-buff-listt',
@@ -9,32 +8,12 @@ import { BuffValue } from '../buffValue.model';
   styleUrls: ['./buff-list.component.css']
 })
 export class BuffListComponent implements OnInit {
-  @Output() buffWasSelected = new EventEmitter<Buff>();
+  buffs: Buff[];
 
-  buffs = [new Buff(
-    'Bulls Strength',
-    RandomId(),
-    'min/level',
-    'spell',
-    2,
-    'Wizard',
-    [new BuffValue('strenght', 'enchatment', 1, 'null', () => 2)]),
-    new Buff(
-    'Cats Grace',
-    RandomId(),
-    'min/level',
-    'spell',
-    2,
-    'Wizard',
-    [new BuffValue('dexterity', 'enchatment', 1, 'null', () => 2)])
-  ];
-  constructor() { }
+  constructor(private buffService: BuffService) { }
 
   ngOnInit() {
-  }
-
-  onBuffSelected(buff: Buff) {
-    this.buffWasSelected.emit(buff);
+    this.buffs = this.buffService.getBuffs();
   }
 
 }

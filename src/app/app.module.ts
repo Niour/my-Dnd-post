@@ -9,6 +9,8 @@ import { BuffListComponent } from './buffs/buff-list/buff-list.component';
 import { BuffDetailComponent } from './buffs/buff-detail/buff-detail.component';
 import { BuffsComponent } from './buffs/buffs.component';
 import { BuffItemIIComponent } from './buffs/buff-list/buff-item-ii/buff-item-ii.component';
+import { FormsModule } from '@angular/forms';
+import { BuffService } from './buffs/buff.service';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { BuffItemIIComponent } from './buffs/buff-list/buff-item-ii/buff-item-ii
   ],
   imports: [
     BrowserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [BuffService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
