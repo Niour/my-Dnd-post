@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Buff } from '../buff.model';
 import { BuffService } from '../buff.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { relative } from 'path';
 
 @Component({
   selector: 'app-buff-listt',

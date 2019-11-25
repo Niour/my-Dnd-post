@@ -1,10 +1,10 @@
 import { Buff } from './buff.model';
 import { BuffValue } from './buffValue.model';
 import { RandomId } from '../shared/helper';
-import { EventEmitter } from '@angular/core';
+// import { Subject } from 'rxjs';
 
 export class BuffService {
-    buffSelected = new EventEmitter<Buff>();
+    // buffSelected = new Subject<Buff>();
 
     private buffs = [
         new Buff(
