@@ -11,6 +11,9 @@ import { BuffsComponent } from './buffs/buffs.component';
 import { BuffItemIIComponent } from './buffs/buff-list/buff-item-ii/buff-item-ii.component';
 import { FormsModule } from '@angular/forms';
 import { BuffService } from './buffs/buff.service';
+import { AppRoutingModule } from './app-routing.module';
+import { BuffStartComponent } from './buffs/buff-start/buff-start.component';
+import { BuffEditComponent } from './buffs/buff-edit/buff-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +25,13 @@ import { BuffService } from './buffs/buff.service';
     BuffDetailComponent,
     BuffsComponent,
     BuffItemIIComponent,
+    BuffStartComponent,
+    BuffEditComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [BuffService],
   bootstrap: [AppComponent]

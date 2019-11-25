@@ -31,5 +31,9 @@ export class BuffService {
           return this.buffs.slice();
       }
 
+      getBuff(index: number) {
+          return this.buffs[index];
+      }
+
 
 }

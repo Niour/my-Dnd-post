@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Buff } from '../../buff.model';
-import { BuffService } from '../../buff.service';
 
 @Component({
   selector: 'app-buff-item-ii',
@@ -9,13 +8,11 @@ import { BuffService } from '../../buff.service';
 })
 export class BuffItemIIComponent implements OnInit {
   @Input() buff: Buff;
-  constructor(private buffService: BuffService) { }
+  @Input() index: number;
+
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  onSelected() {
-    this.buffService.buffSelected.emit(this.buff);
   }
 
 }

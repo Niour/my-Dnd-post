@@ -3,13 +3,7 @@
         <app-buff-listt></app-buff-listt>
     </div>
     <div class="col-md-7">
-        <app-buff-detail
-        *ngIf="selectedBuff; else infoText"
-        [buff]="selectedBuff"></app-buff-detail>
-        <ng-template #infoText>
-            <p>
-                Please select a recipe!
-            </p>
-        </ng-template>
+        <router-outlet></router-outlet>
+    </div>
 </div>
 

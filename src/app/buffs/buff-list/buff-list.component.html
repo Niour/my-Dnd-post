@@ -1,10 +1,11 @@
-<button class="btn btn-success"> New Buff </button>
+<button class="btn btn-success" (click)="onNewBuff()"> New Buff </button>
 <hr>
 <div class="row">
         <div class="col-xs-8">
             <app-buff-item-ii 
-            *ngFor="let buffEl of buffs" 
+            *ngFor="let buffEl of buffs; let i = index" 
             [buff]="buffEl"
+            [index]="i"
             >
         </app-buff-item-ii>
         </div>
