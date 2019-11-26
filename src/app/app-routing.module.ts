@@ -9,7 +9,7 @@ import { BuffEditComponent } from './buffs/buff-edit/buff-edit.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/buff-list', pathMatch: 'full' },
-  { path: 'buff-list', component: BuffsComponent, children: [
+  { path: 'buff-list', component: BuffsComponent, children: [ //  Einai ligo lathois to onoma, eprepe na einai buff
     {path: '', component: BuffStartComponent },
     { path: 'new', component: BuffEditComponent},
     { path: ':id', component: BuffDetailComponent},

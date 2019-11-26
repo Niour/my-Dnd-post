@@ -3,13 +3,13 @@ export class BuffValue {
     public type: string;
     public after: number;
     public special: string;
-    public value: (special: string) => number;
+    public value: number[];
 
     constructor(name: string,
                 type: string,
                 after: number,
                 special: string,
-                value: (special: string) => number ) {
+                value: number[]) {
                     this.name = name;
                     this.type = type;
                     this.after = after;

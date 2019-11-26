@@ -14,16 +14,17 @@ export class BuffService {
             'spell',
             2,
             'Wizard',
-            [new BuffValue('strenght', 'enchatment', 1, 'null', () => 2)]),
+            [new BuffValue('strenght', 'enchatment', 1, 'null', [2])]),
         new Buff(
-            'Cats Grace',
+            'Bulls Strength',
             RandomId(),
             'min/level',
             'spell',
             2,
             'Wizard',
-            [new BuffValue('dexterity', 'enchatment', 1, 'null', () => 2)])
-      ];
+            [new BuffValue('strenght', 'enchatment', 1, 'null', [2])]
+            )
+            ];
 
       constructor() {}
 
