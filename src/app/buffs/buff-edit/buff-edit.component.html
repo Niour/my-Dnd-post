@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-        <form>
+        <form [formGroup]="buffForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-xs-12">
                     <button type="submit" class="btn btn-success"> Save </button>
@@ -14,6 +14,7 @@
                         <input 
                         type="text" 
                         id="name"
+                        formControlName="name"
                         class="form-control">
                     </div>
                 </div>
@@ -21,14 +22,32 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="duration">Duration</label>
                         <input 
                         type="text" 
-                        id="name"
+                        id="duration"
+                        formControlName="duration"
                         class="form-control">
                     </div>
                 </div>
             </div>
+            <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="name">Type</label>
+                            <input 
+                            type="text"
+                            id="buffState"
+                            [typeahead]="buffTypes"
+                            [typeaheadOptionsLimit]="20"
+                            [typeaheadMinLength]="0"
+                            placeholder="Pick one"
+                            formControlName="test"
+                            class="form-control"
+                            autocomplete="off">
+                        </div>
+                    </div>
+                </div>
         </form>
-    </div>
+    <div>
 </div>

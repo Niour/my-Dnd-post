@@ -16,7 +16,7 @@ export class BuffService {
             'Wizard',
             [new BuffValue('strenght', 'enchatment', 1, 'null', [2])]),
         new Buff(
-            'Bulls Strength',
+            'Cats Grace',
             RandomId(),
             'min/level',
             'spell',
