@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { BuffService } from '../buff.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { BuffService } from '../buff.service';
   styleUrls: ['./buff-edit.component.css']
 })
 export class BuffEditComponent implements OnInit {
-  buffTypes = ['spell', 'condition', 'armor', 'Class ab.', 'mode', 'size', 'negative Level']; // type
-  clas = ['Wizard', 'Sorcerer', 'Bard']; // clas
+  buffTypes = ['spell', 'condition', 'Class ab.', 'mode']; // type
+  clas = ['Wizard', 'Sorcerer', 'Bard', 'Cleric']; // clas
   buffName = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma',
   'attack', 'damage', 'grapple', 'ac', 'fort', 'ref', 'will'];
   bonusesTypes = ['enchancement', 'racial', 'untyped', 'circumstance', 'alchemicalBonus', 'dodge',
@@ -37,23 +37,47 @@ export class BuffEditComponent implements OnInit {
       );
   }
 
+  getControls() {
+    return this.buffForm.get('valueBuffs') as FormArray;
+  }
 
   private initForm() {
 
     let buffName = '';
-    let buffState = '';
+    let buffDuration = '';
+    let bufftype = '';
+    let bufflevel: number;
+    let buffclas = '';
+    let valueBuff = new FormArray([]);
 
     if (this.editMode) {
       const buff = this.buffService.getBuff(this.id);
       buffName = buff.name;
-      buffState = '';
+      buffDuration = buff.duration;
+      bufftype = buff.type;
+      bufflevel = buff.level;
+      buffclas = buff.clas;
+      if ( buff.value ) {
+        for ( const value of buff.value ) {
+          valueBuff.push(
+            new FormGroup({
+              name: new FormControl(value.name),
+              type: new FormControl(value.type)
+            })
+          );
+        }
+      }
     }
 
     this.buffForm = new FormGroup({
       name: new FormControl(buffName),
-      test: new FormControl(buffState),
-      duration: new FormControl()
+      duration: new FormControl(buffDuration),
+      type: new FormControl(bufftype),
+      level: new FormControl(bufflevel),
+      clas: new FormControl(buffclas),
+      valueBuffs: valueBuff
     });
+
   }
 
   onSubmit() {
