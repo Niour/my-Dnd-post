@@ -14,9 +14,9 @@ export class BuffService {
             'spell',
             2,
             'Wizard',
-            [new BuffValue('strenght', 'enchatment', 1, 'caster Level', 2),
-            new BuffValue('dexterity', 'enchatment', 1, 'caster Level', 2, 1),
-            new BuffValue('constitution', 'enchatment', 1, 'caster Level', 2, 1, 3)],
+            [new BuffValue('strenght', 'enchantment', 1, 'caster Level', 2),
+            new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
+            new BuffValue('constitution', 'enchantment', 1, 'caster Level', 2, 1, 3)],
             'This is the Bulls Strenght'),
         new Buff(
             'Cats Grace',
@@ -25,7 +25,7 @@ export class BuffService {
             'spell',
             2,
             'Wizard',
-            [new BuffValue('dexterity', 'enchatment', 1, 'caster Level', 2, 2, 2)],
+            [new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 2, 2)],
             'Test'
             )
             ];
