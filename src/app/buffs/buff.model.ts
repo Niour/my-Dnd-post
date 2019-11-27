@@ -8,6 +8,7 @@ export class Buff {
     public level: number;
     public clas: string;
     public value: BuffValue[];
+    public notes: string;
 
     constructor(name: string,
                 id: string,
@@ -15,7 +16,8 @@ export class Buff {
                 type: string,
                 level: number,
                 clas: string,
-                value: BuffValue[]) {
+                value: BuffValue[],
+                notes: string) {
             this.name = name;
             this.id = id;
             this.duration = duration;
@@ -23,5 +25,6 @@ export class Buff {
             this.level = level;
             this.clas = clas;
             this.value = value;
+            this.notes = notes;
 }
 }
