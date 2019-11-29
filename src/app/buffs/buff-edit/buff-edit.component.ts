@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { BuffService } from '../buff.service';
+import { Buff } from '../buff.model';
 
 @Component({
   selector: 'app-buff-edit',
@@ -41,6 +42,13 @@ export class BuffEditComponent implements OnInit {
     return this.buffForm.get('valueBuffs') as FormArray;
   }
 
+  arrayValidator(nameRe: string[]): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const forbidden = nameRe.includes(control.value);
+      return !forbidden ? {forbiddenName: {value: control.value}} : null;
+    };
+  }
+
   private initForm() {
 
     let buffName = '';
@@ -63,12 +71,12 @@ export class BuffEditComponent implements OnInit {
         for ( const value of buff.value ) {
           valueBuff.push(
             new FormGroup({
-              name: new FormControl(value.name),
-              type: new FormControl(value.type),
-              value1: new FormControl(value.value1),
+              name: new FormControl(value.name, [Validators.required, this.arrayValidator(this.buffName)]),
+              type: new FormControl(value.type, [Validators.required, this.arrayValidator(this.bonusesTypes)]),
+              value1: new FormControl(value.value1, Validators.required),
               value2: new FormControl(value.value2),
               value3: new FormControl(value.value3),
-              special: new FormControl(value.special)
+              special: new FormControl(value.special, Validators.required)
             })
           );
         }
@@ -76,11 +84,14 @@ export class BuffEditComponent implements OnInit {
     }
 
     this.buffForm = new FormGroup({
-      name: new FormControl(buffName),
-      duration: new FormControl(buffDuration),
-      type: new FormControl(bufftype),
-      level: new FormControl(bufflevel),
-      clas: new FormControl(buffclas),
+      name: new FormControl(buffName, Validators.required),
+      duration: new FormControl(buffDuration, Validators.required),
+      type: new FormControl(bufftype, [Validators.required , this.arrayValidator(this.buffTypes)]),
+      level: new FormControl(bufflevel, [
+        Validators.required,
+        Validators.pattern(/^[0-9]+[0-9]*$/)
+      ]),
+      clas: new FormControl(buffclas, [Validators.required, this.arrayValidator(this.clas)]),
       notes: new FormControl(buffnotes),
       valueBuffs: valueBuff
     });
@@ -89,17 +100,32 @@ export class BuffEditComponent implements OnInit {
 
   onSubmit() {
     console.log(this.buffForm.value);
+    const newBuff = new Buff(
+      this.buffForm.value.name,
+      this.buffService.getBuff(this.id).id,
+      this.buffForm.value.duration,
+      this.buffForm.value.type,
+      this.buffForm.value.level,
+      this.buffForm.value.clas,
+      this.buffForm.value.value,
+      this.buffForm.value.notes
+    );
+    if (this.editMode) {
+      this.buffService.updateBuff(this.id, newBuff);
+    } else {
+      this.buffService.addBuff(newBuff);
+    }
   }
 
   onAddValue() {
     (this.buffForm.get('valueBuffs') as FormArray).push(
       new FormGroup({
-        name: new FormControl(),
-        type: new FormControl(),
-        value1: new FormControl(),
+        name: new FormControl(null, Validators.required),
+        type: new FormControl(null, Validators.required),
+        value1: new FormControl(null, Validators.required),
         value2: new FormControl(),
         value3: new FormControl(),
-        special: new FormControl()
+        special: new FormControl(null, Validators.required)
     })
     );
   }

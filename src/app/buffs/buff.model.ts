@@ -17,7 +17,7 @@ export class Buff {
                 level: number,
                 clas: string,
                 value: BuffValue[],
-                notes: string) {
+                notes?: string) {
             this.name = name;
             this.id = id;
             this.duration = duration;

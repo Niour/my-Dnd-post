@@ -19,6 +19,7 @@ export class BuffDetailComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
+          console.log(params);
           this.id = +params.id;
           this.buff = this.buffService.getBuff(this.id);
         }

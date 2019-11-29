@@ -14,7 +14,7 @@ export class BuffService {
             'spell',
             2,
             'Wizard',
-            [new BuffValue('strenght', 'enchantment', 1, 'caster Level', 2),
+            [new BuffValue('strength', 'enchantment', 1, 'caster Level', 2),
             new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
             new BuffValue('constitution', 'enchantment', 1, 'caster Level', 2, 1, 3)],
             'This is the Bulls Strenght'),
@@ -40,5 +40,12 @@ export class BuffService {
           return this.buffs[index];
       }
 
+      addBuff(buff: Buff) {
+        this.buffs.push(buff);
+      }
+
+      updateBuff(index: number, newBuff: Buff) {
+        this.buffs[index] = newBuff;
+      }
 
 }
