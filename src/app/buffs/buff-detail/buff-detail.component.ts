@@ -30,4 +30,9 @@ export class BuffDetailComponent implements OnInit {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
+  onDeleteBuff() {
+    this.buffService.deleteBuff(this.id);
+    this.router.navigate(['buff-list']);
+  }
+
 }

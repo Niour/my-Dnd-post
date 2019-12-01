@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, FormGroup, FormArray, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { BuffService } from '../buff.service';
 import { Buff } from '../buff.model';
+import { RandomId } from 'src/app/shared/helper';
 
 @Component({
   selector: 'app-buff-edit',
@@ -25,7 +26,8 @@ export class BuffEditComponent implements OnInit {
   buffForm: FormGroup;
 
   constructor(private buffService: BuffService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -47,6 +49,11 @@ export class BuffEditComponent implements OnInit {
       const forbidden = nameRe.includes(control.value);
       return !forbidden ? {forbiddenName: {value: control.value}} : null;
     };
+  }
+
+  onCancel() {
+    console.log('inside onCancel');
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   private initForm() {
@@ -100,9 +107,15 @@ export class BuffEditComponent implements OnInit {
 
   onSubmit() {
     console.log(this.buffForm.value);
+    let newId;
+    if (this.editMode) {
+      newId = this.buffService.getBuff(this.id).id;
+    } else {
+      newId = RandomId();
+    }
     const newBuff = new Buff(
       this.buffForm.value.name,
-      this.buffService.getBuff(this.id).id,
+      newId,
       this.buffForm.value.duration,
       this.buffForm.value.type,
       this.buffForm.value.level,
@@ -115,6 +128,7 @@ export class BuffEditComponent implements OnInit {
     } else {
       this.buffService.addBuff(newBuff);
     }
+    this.onCancel();
   }
 
   onAddValue() {
@@ -129,4 +143,9 @@ export class BuffEditComponent implements OnInit {
     })
     );
   }
+
+  onDeleteValue(index: number) {
+    (this.buffForm.get('valueBuffs') as FormArray).removeAt(index);
+  }
+
 }

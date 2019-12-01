@@ -1,9 +1,11 @@
 import { Buff } from './buff.model';
 import { BuffValue } from './buffValue.model';
 import { RandomId } from '../shared/helper';
+import { Subject } from 'rxjs';
 // import { Subject } from 'rxjs';
 
 export class BuffService {
+    buffsChanged = new Subject<Buff[]>();
     // buffSelected = new Subject<Buff>();
 
     private buffs = [
@@ -42,10 +44,17 @@ export class BuffService {
 
       addBuff(buff: Buff) {
         this.buffs.push(buff);
+        this.buffsChanged.next(this.buffs.slice());
       }
 
       updateBuff(index: number, newBuff: Buff) {
         this.buffs[index] = newBuff;
+        this.buffsChanged.next(this.buffs.slice());
+      }
+
+      deleteBuff(index: number) {
+          this.buffs.splice(index, 1);
+          this.buffsChanged.next(this.buffs.slice());
       }
 
 }
