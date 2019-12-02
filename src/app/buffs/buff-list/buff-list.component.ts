@@ -14,6 +14,7 @@ export class BuffListComponent implements OnInit, OnDestroy {
   buffTypes = ['spell', 'condition', 'Class ab.', 'mode'];
   buffs: Buff[];
   subscription: Subscription;
+  filteredType: string;
 
   constructor(private buffService: BuffService,
               private router: Router,
