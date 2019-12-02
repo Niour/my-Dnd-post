@@ -29,7 +29,27 @@ export class BuffService {
             'Wizard',
             [new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 2, 2)],
             'Test'
-            )
+            ),
+            new Buff(
+                'Test one',
+                RandomId(),
+                'min/level',
+                'condition',
+                2,
+                'Wizard',
+                [new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 2, 2)],
+                'Test'
+                ),
+                new Buff(
+                    'Test two',
+                    RandomId(),
+                    'min/level',
+                    'spell',
+                    2,
+                    'Wizard',
+                    [new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 2, 2)],
+                    'Test'
+                    )
             ];
 
       constructor() {}

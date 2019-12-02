@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./buff-list.component.css']
 })
 export class BuffListComponent implements OnInit, OnDestroy {
+  selected = '';
+  buffTypes = ['spell', 'condition', 'Class ab.', 'mode'];
   buffs: Buff[];
   subscription: Subscription;
 
@@ -35,4 +37,16 @@ export class BuffListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  filterType(item: string) {
+    this.selected = item; // this has to can be iplemented with a directive
+  }
+
+  getindex(id: string) {
+    let elementIndex = 0;
+    elementIndex = this.buffs.findIndex(element => {
+      return id === element.id;
+      });
+    return elementIndex;
+
+  }
 }

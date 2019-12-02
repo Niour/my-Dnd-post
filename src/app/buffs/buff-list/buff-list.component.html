@@ -1,11 +1,27 @@
 <button class="btn btn-success" (click)="onNewBuff()"> New Buff </button>
+<div class="btn-group" dropdown>
+    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+          aria-controls="dropdown-basic">
+          {{selected ? selected : 'filter'}} <span class="caret"></span>
+  </button>
+
+  <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="button-basic">
+    <li role="menuitem" *ngFor="let item of buffTypes; let i = index ">
+        <a class="dropdown-item" (click)="filterType(buffTypes[i])">
+        {{item}}
+        </a>
+    </li>
+  </ul>
+</div>
+
 <hr>
 <div class="row">
         <div class="col-xs-8">
             <app-buff-item-ii 
-            *ngFor="let buffEl of buffs; let i = index" 
+            *ngFor="let buffEl of buffs | filter:selected:'type'" 
             [buff]="buffEl"
-            [index]="i"
+            [index]="getindex(buffEl.id)"
             >
         </app-buff-item-ii>
         </div>
