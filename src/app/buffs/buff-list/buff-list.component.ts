@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class BuffListComponent implements OnInit, OnDestroy {
   selected = '';
-  buffTypes = ['spell', 'condition', 'Class ab.', 'mode'];
+  buffTypes = ['spell', 'condition', 'Class ab.', 'mode', 'all'];
   buffs: Buff[];
   subscription: Subscription;
   filteredType: string;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BuffService } from '../buffs/buff.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   collapsed = true;
-  constructor() { }
+  constructor(private buffService: BuffService) { }
 
   ngOnInit() {
+  }
+
+  onSaveData() {
+    this.buffService.storeBuffs();
+  }
+
+  onFetchData() {
+    this.buffService.fetchBuffs();
+  }
+
+  onBackupData() {
+    this.buffService.backup();
   }
 
 }
