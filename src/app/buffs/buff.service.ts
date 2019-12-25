@@ -1,5 +1,5 @@
-import { Buff } from './buff.model';
-import { BuffValue } from './buffValue.model';
+import { Spell } from './models/spell.model';
+import { BuffValue } from './models/spellValue.model';
 import { RandomId } from '../shared/helper';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,11 +8,11 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BuffService {
-    buffsChanged = new Subject<Buff[]>();
+    buffsChanged = new Subject<Spell[]>();
     // buffSelected = new Subject<Buff>();
     // private buffs = [];
     private buffs = [
-        new Buff(
+        new Spell(
         'Bulls Strength',
         RandomId(),
         'min/level',
@@ -72,7 +72,7 @@ export class BuffService {
           return this.buffs.slice();
       }
 
-      setBuffs(buffs: Buff[]) {
+      setBuffs(buffs: Spell[]) {
           this.buffs = buffs;
           this.buffsChanged.next(this.buffs.slice());
       }
@@ -81,12 +81,12 @@ export class BuffService {
           return this.buffs[index];
       }
 
-      addBuff(buff: Buff) {
+      addBuff(buff: Spell) {
         this.buffs.push(buff);
         this.buffsChanged.next(this.buffs.slice());
       }
 
-      updateBuff(index: number, newBuff: Buff) {
+      updateBuff(index: number, newBuff: Spell) {
         this.buffs[index] = newBuff;
         this.buffsChanged.next(this.buffs.slice());
       }
@@ -107,7 +107,7 @@ export class BuffService {
     }
 
     fetchBuffs() {
-        this.http.get<Buff[]>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json')
+        this.http.get<Spell[]>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json')
             .subscribe(
                 buffs => {
                     this.setBuffs(buffs);

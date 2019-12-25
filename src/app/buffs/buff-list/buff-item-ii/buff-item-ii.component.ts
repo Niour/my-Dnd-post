@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Buff } from '../../buff.model';
+import { Spell } from '../../models/spell.model';
 
 @Component({
   selector: 'app-buff-item-ii',
@@ -7,7 +7,7 @@ import { Buff } from '../../buff.model';
   styleUrls: ['./buff-item-ii.component.css']
 })
 export class BuffItemIIComponent implements OnInit {
-  @Input() buff: Buff;
+  @Input() buff: Spell;
   @Input() index: number;
 
   constructor() { }

@@ -1,6 +1,6 @@
-import { BuffValue } from './buffValue.model';
+import { BuffValue } from './spellValue.model';
 
-export class Buff {
+export class Spell {
     public name: string;
     public id: string;
     public duration: string;

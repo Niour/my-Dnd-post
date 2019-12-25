@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { Buff } from '../buff.model';
+import { Spell } from '../models/spell.model';
 import { BuffService } from '../buff.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class BuffListComponent implements OnInit, OnDestroy {
   selected = '';
   buffTypes = ['spell', 'condition', 'Class ab.', 'mode', 'all'];
-  buffs: Buff[];
+  buffs: Spell[];
   subscription: Subscription;
   filteredType: string;
 
@@ -23,15 +23,15 @@ export class BuffListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.buffService.buffsChanged
     .subscribe(
-      (buffs: Buff[]) => {
+      (buffs: Spell[]) => {
         this.buffs = buffs;
       }
     );
     this.buffs = this.buffService.getBuffs();
   }
 
-  onNewBuff() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+  onNewBuff(selected) {
+    this.router.navigate(['newSpell'], {relativeTo: this.route});
   }
 
   ngOnDestroy() {

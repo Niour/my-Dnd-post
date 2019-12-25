@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Buff } from '../buff.model';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Spell } from '../models/spell.model';
+import { ActivatedRoute, Params, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { BuffService } from '../buff.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { BuffService } from '../buff.service';
   styleUrls: ['./buff-detail.component.css']
 })
 export class BuffDetailComponent implements OnInit {
-  buff: Buff;
+  buff: Spell;
   id: number;
   constructor(private buffService: BuffService,
               private route: ActivatedRoute,
@@ -19,7 +19,6 @@ export class BuffDetailComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          console.log(params);
           this.id = +params.id;
           this.buff = this.buffService.getBuff(this.id);
         }

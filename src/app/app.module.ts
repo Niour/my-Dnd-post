@@ -13,7 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BuffService } from './buffs/buff.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BuffStartComponent } from './buffs/buff-start/buff-start.component';
-import { BuffEditComponent } from './buffs/buff-edit/buff-edit.component';
+import { SpellEditComponent } from './buffs/spell-edit/spell-edit.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -31,7 +31,7 @@ import { HttpClientModule} from '@angular/common/http';
     BuffsComponent,
     BuffItemIIComponent,
     BuffStartComponent,
-    BuffEditComponent,
+    SpellEditComponent,
     FilterPipe,
   ],
   imports: [
