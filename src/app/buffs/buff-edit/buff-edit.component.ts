@@ -40,6 +40,11 @@ export class BuffEditComponent implements OnInit {
       );
   }
 
+  // getControlsSpecial(special: string) {
+  //   console.log(this.buffForm.get(special) as FormControl);
+  //   return (this.buffForm.get(special) as FormControl).value;
+  // } in case we need this more general
+
   getControls() {
     return this.buffForm.get('valueBuffs') as FormArray;
   }
