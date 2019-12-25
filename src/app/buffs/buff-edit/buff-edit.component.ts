@@ -120,7 +120,7 @@ export class BuffEditComponent implements OnInit {
       this.buffForm.value.type,
       this.buffForm.value.level,
       this.buffForm.value.clas,
-      this.buffForm.value.value,
+      this.buffForm.value.valueBuffs,
       this.buffForm.value.notes
     );
     if (this.editMode) {
