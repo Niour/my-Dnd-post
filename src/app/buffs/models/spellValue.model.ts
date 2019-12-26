@@ -1,4 +1,4 @@
-export class BuffValue {
+export class SpellValue {
     public name: string;
     public type: string;
     public after: number;

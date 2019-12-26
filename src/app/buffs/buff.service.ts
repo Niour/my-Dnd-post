@@ -1,28 +1,32 @@
 import { Spell } from './models/spell.model';
-import { BuffValue } from './models/spellValue.model';
+import { SpellValue } from './models/spellValue.model';
 import { RandomId } from '../shared/helper';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { Subject } from 'rxjs';
+import { Buffs } from '../shared/buffs';
 
 @Injectable()
 export class BuffService {
     buffsChanged = new Subject<Spell[]>();
     // buffSelected = new Subject<Buff>();
     // private buffs = [];
-    private buffs = [
-        new Spell(
-        'Bulls Strength',
-        RandomId(),
-        'min/level',
-        'spell',
-        2,
-        'Wizard',
-        [new BuffValue('strength', 'enchantment', 1, 'caster Level', 2),
-        new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
-        new BuffValue('constitution', 'enchantment', 1, 'caster Level', 2, 1, 3)],
-        'This is the Bulls Strenght')];
+
+    private buffs: Buffs = {
+        spells: [
+            new Spell(
+            'Bulls Strength',
+            RandomId(),
+            'min/level',
+            'spell',
+            2,
+            'Wizard',
+            [new SpellValue('strength', 'enchantment', 1, 'caster Level', 2),
+            new SpellValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
+            new SpellValue('constitution', 'enchantment', 1, 'caster Level', 2, 1, 3)],
+            'This is the Bulls Strenght')],
+            test: 'test'
+        };
         // new Buff(
         //     'Bulls Strength',
         //     RandomId(),
@@ -69,31 +73,31 @@ export class BuffService {
       constructor(private http: HttpClient) {}
 
       getBuffs() {
-          return this.buffs.slice();
+          return this.buffs.spells.slice();
       }
 
-      setBuffs(buffs: Spell[]) {
-          this.buffs = buffs;
-          this.buffsChanged.next(this.buffs.slice());
+      setBuffs(buffs: Buffs) {
+          this.buffs.spells = buffs.spells;
+          this.buffsChanged.next(this.buffs.spells.slice());
       }
 
       getBuff(index: number) {
-          return this.buffs[index];
+          return this.buffs.spells[index];
       }
 
       addBuff(buff: Spell) {
-        this.buffs.push(buff);
-        this.buffsChanged.next(this.buffs.slice());
+        this.buffs.spells.push(buff);
+        this.buffsChanged.next(this.buffs.spells.slice());
       }
 
       updateBuff(index: number, newBuff: Spell) {
-        this.buffs[index] = newBuff;
-        this.buffsChanged.next(this.buffs.slice());
+        this.buffs.spells[index] = newBuff;
+        this.buffsChanged.next(this.buffs.spells.slice());
       }
 
       deleteBuff(index: number) {
-          this.buffs.splice(index, 1);
-          this.buffsChanged.next(this.buffs.slice());
+          this.buffs.spells.splice(index, 1);
+          this.buffsChanged.next(this.buffs.spells.slice());
       }
 
       storeBuffs() {
@@ -107,7 +111,7 @@ export class BuffService {
     }
 
     fetchBuffs() {
-        this.http.get<Spell[]>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json')
+        this.http.get<Buffs>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json')
             .subscribe(
                 buffs => {
                     this.setBuffs(buffs);
