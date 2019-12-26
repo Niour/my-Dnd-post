@@ -72,7 +72,7 @@ export class SpellEditComponent implements OnInit {
     let buffnotes = '';
 
     if (this.editMode) {
-      const buff = this.buffService.getBuff(this.id);
+      const buff = this.buffService.getBuffSpell(this.id);
       buffName = buff.name;
       buffDuration = buff.duration;
       bufftype = buff.type;
@@ -114,7 +114,7 @@ export class SpellEditComponent implements OnInit {
     console.log(this.buffForm.value);
     let newId;
     if (this.editMode) {
-      newId = this.buffService.getBuff(this.id).id;
+      newId = this.buffService.getBuffSpell(this.id).id;
     } else {
       newId = RandomId();
     }
@@ -129,9 +129,9 @@ export class SpellEditComponent implements OnInit {
       this.buffForm.value.notes
     );
     if (this.editMode) {
-      this.buffService.updateBuff(this.id, newBuff);
+      this.buffService.updateBuffSpell(this.id, newBuff);
     } else {
-      this.buffService.addBuff(newBuff);
+      this.buffService.addBuffSpell(newBuff);
     }
     this.onCancel();
   }

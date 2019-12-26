@@ -72,30 +72,30 @@ export class BuffService {
 
       constructor(private http: HttpClient) {}
 
-      getBuffs() {
+      getBuffsSpells() {
           return this.buffs.spells.slice();
       }
 
-      setBuffs(buffs: Buffs) {
+      setBuffsSpells(buffs: Buffs) {
           this.buffs.spells = buffs.spells;
           this.buffsChanged.next(this.buffs.spells.slice());
       }
 
-      getBuff(index: number) {
+      getBuffSpell(index: number) {
           return this.buffs.spells[index];
       }
 
-      addBuff(buff: Spell) {
+      addBuffSpell(buff: Spell) {
         this.buffs.spells.push(buff);
         this.buffsChanged.next(this.buffs.spells.slice());
       }
 
-      updateBuff(index: number, newBuff: Spell) {
+      updateBuffSpell(index: number, newBuff: Spell) {
         this.buffs.spells[index] = newBuff;
         this.buffsChanged.next(this.buffs.spells.slice());
       }
 
-      deleteBuff(index: number) {
+      deleteBuffSpell(index: number) {
           this.buffs.spells.splice(index, 1);
           this.buffsChanged.next(this.buffs.spells.slice());
       }
@@ -114,7 +114,7 @@ export class BuffService {
         this.http.get<Buffs>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json')
             .subscribe(
                 buffs => {
-                    this.setBuffs(buffs);
+                    this.setBuffsSpells(buffs);
                 }
             );
     }

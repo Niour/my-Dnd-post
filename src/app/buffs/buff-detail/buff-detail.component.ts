@@ -20,7 +20,7 @@ export class BuffDetailComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.id = +params.id;
-          this.buff = this.buffService.getBuff(this.id);
+          this.buff = this.buffService.getBuffSpell(this.id);
         }
       );
   }
@@ -30,7 +30,7 @@ export class BuffDetailComponent implements OnInit {
   }
 
   onDeleteBuff() {
-    this.buffService.deleteBuff(this.id);
+    this.buffService.deleteBuffSpell(this.id);
     this.router.navigate(['buff-list']);
   }
 

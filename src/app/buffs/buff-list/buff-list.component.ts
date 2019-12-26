@@ -27,7 +27,7 @@ export class BuffListComponent implements OnInit, OnDestroy {
         this.buffs = buffs;
       }
     );
-    this.buffs = this.buffService.getBuffs();
+    this.buffs = this.buffService.getBuffsSpells();
   }
 
   onNewBuff(selected) {
