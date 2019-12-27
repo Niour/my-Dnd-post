@@ -3,6 +3,7 @@ import { Spell } from '../models/spell.model';
 import { BuffService } from '../buff.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Equipment } from '../models/equipment.model';
 
 @Component({
   selector: 'app-buff-listt',
@@ -12,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class BuffListComponent implements OnInit, OnDestroy {
   selected = '';
   buffTypes = ['spell', 'condition', 'Class ab.', 'mode', 'all'];
-  buffs: Spell[];
+  buffs: Spell[] | Equipment[];
   subscription: Subscription;
   filteredType: string;
 
@@ -21,7 +22,7 @@ export class BuffListComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subscription = this.buffService.buffsChanged
+    this.subscription = this.buffService.SpellsChanged
     .subscribe(
       (buffs: Spell[]) => {
         this.buffs = buffs;
