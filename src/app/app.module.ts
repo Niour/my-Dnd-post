@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FilterPipe } from './pipes/filter.pipe';
 import { HttpClientModule} from '@angular/common/http';
+import { EquipmentEditComponent } from './buffs/equipment-edit/equipment-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HttpClientModule} from '@angular/common/http';
     BuffStartComponent,
     SpellEditComponent,
     FilterPipe,
+    EquipmentEditComponent,
   ],
   imports: [
     FormsModule,
