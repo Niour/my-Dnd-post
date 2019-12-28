@@ -9,12 +9,11 @@ import { Equipment } from './models/equipment.model';
 
 @Injectable()
 export class BuffService {
-    SpellsChanged = new Subject<Spell[]>();
     BuffsChanged = new Subject<Buffs>();
     // buffSelected = new Subject<Buff>();
 
     private buffs: Buffs = {
-        spells: [
+        spell: [
             new Spell(
             'Bulls Strength',
             RandomId(),
@@ -44,38 +43,38 @@ export class BuffService {
       getTypeBuffs() {
         return new Object(
             {
-                spells: this.buffs.spells.slice(),
+                spell: this.buffs.spell.slice(),
                 equipment: this.buffs.equipment.slice()
             }
         ) as Buffs;
       }
 
-      getBuffsSpells() {
-        return this.buffs.spells.slice();
+      getBuffs() {
+        return this.getTypeBuffs();
       }
 
       setBuffsSpells(buffs: Buffs) {
-          this.buffs.spells = buffs.spells;
-          this.SpellsChanged.next(this.getTypeBuffs().spells.slice());
+          this.buffs.spell = buffs.spell;
+          this.BuffsChanged.next(this.getTypeBuffs());
       }
 
       getBuffSpell(index: number) {
-          return this.buffs.spells[index];
+          return this.buffs.spell[index];
       }
 
       addBuffSpell(buff: Spell) {
-        this.buffs.spells.push(buff);
-        this.SpellsChanged.next(this.buffs.spells.slice());
+        this.buffs.spell.push(buff);
+        this.BuffsChanged.next(this.getTypeBuffs());
       }
 
       updateBuffSpell(index: number, newBuff: Spell) {
-        this.buffs.spells[index] = newBuff;
-        this.SpellsChanged.next(this.buffs.spells.slice());
+        this.buffs.spell[index] = newBuff;
+        this.BuffsChanged.next(this.getTypeBuffs());
       }
 
       deleteBuffSpell(index: number) {
-          this.buffs.spells.splice(index, 1);
-          this.SpellsChanged.next(this.buffs.spells.slice());
+          this.buffs.spell.splice(index, 1);
+          this.BuffsChanged.next(this.getTypeBuffs());
       }
 
       storeBuffs() {

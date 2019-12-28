@@ -11,9 +11,10 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/buff-list', pathMatch: 'full' },
   { path: 'buff-list', component: BuffsComponent, children: [
     {path: '', component: BuffStartComponent },
-    { path: 'newSpell', component: SpellEditComponent},
-    { path: ':id', component: BuffDetailComponent},
-    { path: ':id/edit', component: SpellEditComponent},
+    { path: 'spell', redirectTo: '/buff-list', pathMatch: 'full' },
+    { path: 'spell/newspell', component: SpellEditComponent},
+    { path: 'spells/:id', component: BuffDetailComponent},
+    { path: ':spell/id/edit', component: SpellEditComponent},
   ] },
   { path: 'add-buff', component: AddBuffComponent}
 ];

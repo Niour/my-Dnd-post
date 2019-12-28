@@ -58,7 +58,7 @@ export class SpellEditComponent implements OnInit {
 
   onCancel() {
     console.log('inside onCancel');
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['../../'], {relativeTo: this.route});
   }
 
   private initForm() {

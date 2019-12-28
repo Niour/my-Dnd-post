@@ -4,6 +4,7 @@ import { BuffService } from '../buff.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Equipment } from '../models/equipment.model';
+import { Buffs } from 'src/app/shared/buffs';
 
 @Component({
   selector: 'app-buff-listt',
@@ -11,9 +12,9 @@ import { Equipment } from '../models/equipment.model';
   styleUrls: ['./buff-list.component.css']
 })
 export class BuffListComponent implements OnInit, OnDestroy {
-  selected = '';
-  buffTypes = ['spell', 'condition', 'Class ab.', 'mode', 'all'];
-  buffs: Spell[] | Equipment[];
+  selected = 'spell';
+  buffTypes = ['spell', 'equipment'];
+  buffs: Buffs;
   subscription: Subscription;
   filteredType: string;
 
@@ -22,17 +23,22 @@ export class BuffListComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subscription = this.buffService.SpellsChanged
+    this.subscription = this.buffService.BuffsChanged
     .subscribe(
-      (buffs: Spell[]) => {
+      (buffs: Buffs) => {
         this.buffs = buffs;
+        console.log(this.buffs);
       }
     );
-    this.buffs = this.buffService.getBuffsSpells();
+    this.buffs = this.buffService.getBuffs();
   }
 
-  onNewBuff(selected) {
-    this.router.navigate(['newSpell'], {relativeTo: this.route});
+  onNewBuff() {
+    this.router.navigate([`${this.selected}/new${this.selected}`], {relativeTo: this.route});
+  }
+
+  onSwitchType() {
+    this.router.navigate([''], {relativeTo: this.route});
   }
 
   ngOnDestroy() {
@@ -45,7 +51,7 @@ export class BuffListComponent implements OnInit, OnDestroy {
 
   getindex(id: string) {
     let elementIndex = 0;
-    elementIndex = this.buffs.findIndex(element => {
+    elementIndex = this.buffs[this.selected].findIndex(element => {
       return id === element.id;
       });
     return elementIndex;
