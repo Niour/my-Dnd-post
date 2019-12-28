@@ -1,7 +1,7 @@
 import { Spell } from './models/spell.model';
 import { SpellValue } from './models/spellValue.model';
 import { RandomId } from '../shared/helper';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Buffs } from '../shared/buffs';
@@ -39,7 +39,6 @@ export class BuffService {
 
       constructor(private http: HttpClient) {}
 
-
       getTypeBuffs() {
         return new Object(
             {
@@ -61,6 +60,10 @@ export class BuffService {
       getBuffSpell(index: number) {
           return this.buffs.spell[index];
       }
+
+      getBuffEquipment(index: number) {
+        return this.buffs.equipment[index];
+    }
 
       addBuffSpell(buff: Spell) {
         this.buffs.spell.push(buff);

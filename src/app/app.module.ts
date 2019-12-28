@@ -19,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FilterPipe } from './pipes/filter.pipe';
 import { HttpClientModule} from '@angular/common/http';
-import { EquipmentEditComponent } from './buffs/equipment-edit/equipment-edit.component';
+import { EquipmentEditComponent } from './buffs/equipment/equipment-edit/equipment-edit.component';
+import { EquipmentDetailComponent } from './buffs/equipment/equipment-detail/equipment-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { EquipmentEditComponent } from './buffs/equipment-edit/equipment-edit.co
     SpellEditComponent,
     FilterPipe,
     EquipmentEditComponent,
+    EquipmentDetailComponent,
   ],
   imports: [
     FormsModule,
