@@ -1,7 +1,7 @@
 import { Spell } from './models/spell.model';
 import { SpellValue } from './models/spellValue.model';
 import { RandomId } from '../shared/helper';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Buffs } from '../shared/buffs';
@@ -29,7 +29,7 @@ export class BuffService {
             new Equipment(
             'Bulls Strength',
             RandomId(),
-            'min/level',
+            1,
             'equipment',
             [new SpellValue('strength', 'enchantment', 1, 'caster Level', 2),
             new SpellValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
@@ -57,6 +57,11 @@ export class BuffService {
           this.BuffsChanged.next(this.getTypeBuffs());
       }
 
+      setBuffsEquipment(buffs: Buffs) {
+        this.buffs.equipment = buffs.equipment;
+        this.BuffsChanged.next(this.getTypeBuffs());
+    }
+
       getBuffSpell(index: number) {
           return this.buffs.spell[index];
       }
@@ -70,8 +75,18 @@ export class BuffService {
         this.BuffsChanged.next(this.getTypeBuffs());
       }
 
+      addBuffEquipment(buff: Equipment) {
+        this.buffs.equipment.push(buff);
+        this.BuffsChanged.next(this.getTypeBuffs());
+      }
+
       updateBuffSpell(index: number, newBuff: Spell) {
         this.buffs.spell[index] = newBuff;
+        this.BuffsChanged.next(this.getTypeBuffs());
+      }
+
+      updateBuffEquipment(index: number, newEquip: Equipment) {
+        this.buffs.equipment[index] = newEquip;
         this.BuffsChanged.next(this.getTypeBuffs());
       }
 
@@ -95,6 +110,7 @@ export class BuffService {
             .subscribe(
                 buffs => {
                     this.setBuffsSpells(buffs);
+                    this.setBuffsEquipment(buffs);
                 }
             );
     }

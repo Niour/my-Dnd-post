@@ -11,7 +11,7 @@ import { RandomId } from 'src/app/shared/helper';
   styleUrls: ['./spell-edit.component.css']
 })
 export class SpellEditComponent implements OnInit {
-  buffTypes = ['spell', 'condition', 'Class ab.', 'mode']; // type
+  buffTypes = ['spell']; // type
   clas = ['Wizard', 'Sorcerer', 'Bard', 'Cleric']; // clas
   buffName = ['caster Level', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma',
   'attack', 'damage', 'grapple', 'ac', 'fort', 'ref', 'will'];
