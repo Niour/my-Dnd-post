@@ -95,6 +95,11 @@ export class BuffService {
           this.BuffsChanged.next(this.getTypeBuffs());
       }
 
+      deleteBuffEquipment(index: number) {
+        this.buffs.equipment.splice(index, 1);
+        this.BuffsChanged.next(this.getTypeBuffs());
+    }
+
       storeBuffs() {
         this.http.put('https://react-dungeons-and-dragons.firebaseio.com/buffs.json',
         this.buffs)

@@ -30,7 +30,7 @@ export class EquipmentDetailComponent implements OnInit {
   }
 
   onDeleteBuff() {
-    this.buffService.deleteBuffSpell(this.id);
+    this.buffService.deleteBuffEquipment(this.id);
     this.router.navigate(['buff-list']);
   }
 
