@@ -102,44 +102,4 @@ export class BuffService {
         this.buffs.equipment.splice(index, 1);
         this.BuffsChanged.next(this.getTypeBuffs());
     }
-
-      storeBuffs() {
-        this.http.put('https://react-dungeons-and-dragons.firebaseio.com/buffs.json',
-        this.buffs)
-          .subscribe(
-              (response => {
-                  console.log(response);
-              })
-          );
-    }
-
-    fetchBuffs() {
-      console.log('inside fetch data');
-      return this.authService.user.pipe(
-        take(1),
-        exhaustMap(user => {
-          console.log('test inside fetc buff exhaustmap');
-          console.log(user);
-          return this.http.get<Buffs>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json',
-          {
-            params: new HttpParams().set('auth', user.token)
-          }
-          );
-        })).subscribe(buffs => {
-            console.log(buffs);
-            this.setBuffsSpells(buffs);
-            this.setBuffsEquipment(buffs);
-        });
-}
-
-    backup() {
-        this.http.post('https://react-dungeons-and-dragons.firebaseio.com/buffsBack.json',
-        this.buffs)
-          .subscribe(
-              (response => {
-                  console.log(response);
-              })
-          );
-    }
-
 }

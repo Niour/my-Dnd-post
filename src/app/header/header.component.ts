@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BuffService } from '../buffs/buff.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { DataStorageService } from '../shared/data.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   collapsed = true;
 
   constructor(private buffService: BuffService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     this. userSub = this.authService.user.subscribe(user => {
@@ -23,15 +25,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSaveData() {
-    this.buffService.storeBuffs();
+    this.dataStorageService.storeBuffs();
   }
 
   onFetchData() {
-    this.buffService.fetchBuffs();
+    this.dataStorageService.fetchBuffs();
   }
 
   onBackupData() {
-    this.buffService.backup();
+    this.dataStorageService.backup();
   }
 
   ngOnDestroy() {

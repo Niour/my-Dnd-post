@@ -18,12 +18,12 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FilterPipe } from './pipes/filter.pipe';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { EquipmentEditComponent } from './buffs/equipment/equipment-edit/equipment-edit.component';
 import { EquipmentDetailComponent } from './buffs/equipment/equipment-detail/equipment-detail.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { AuthService } from './auth/auth.service';
+import { AuthInterceptorService } from './auth/auth-intercetor.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,13 @@ import { AuthService } from './auth/auth.service';
     TypeaheadModule.forRoot(),
     BsDropdownModule.forRoot()
   ],
-  providers: [BuffService],
+  providers: [BuffService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
