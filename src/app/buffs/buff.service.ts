@@ -2,10 +2,12 @@ import { Spell } from './models/spell.model';
 import { SpellValue } from './models/spellValue.model';
 import { RandomId } from '../shared/helper';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Buffs } from '../shared/buffs';
 import { Equipment } from './models/equipment.model';
+import { AuthService } from '../auth/auth.service';
+import { take, exhaustMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class BuffService {
@@ -37,7 +39,8 @@ export class BuffService {
             'This is the Bulls Strenght')]
         };
 
-      constructor(private http: HttpClient) {}
+      constructor(private http: HttpClient,
+                  private authService: AuthService) {}
 
       getTypeBuffs() {
         return new Object(
@@ -111,14 +114,23 @@ export class BuffService {
     }
 
     fetchBuffs() {
-        this.http.get<Buffs>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json')
-            .subscribe(
-                buffs => {
-                    this.setBuffsSpells(buffs);
-                    this.setBuffsEquipment(buffs);
-                }
-            );
-    }
+      console.log('inside fetch data');
+      return this.authService.user.pipe(
+        take(1),
+        exhaustMap(user => {
+          console.log('test inside fetc buff exhaustmap');
+          console.log(user);
+          return this.http.get<Buffs>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json',
+          {
+            params: new HttpParams().set('auth', user.token)
+          }
+          );
+        })).subscribe(buffs => {
+            console.log(buffs);
+            this.setBuffsSpells(buffs);
+            this.setBuffsEquipment(buffs);
+        });
+}
 
     backup() {
         this.http.post('https://react-dungeons-and-dragons.firebaseio.com/buffsBack.json',

@@ -7,6 +7,7 @@ import { BuffDetailComponent } from './buffs/buff-detail/buff-detail.component';
 import { SpellEditComponent } from './buffs/spell-edit/spell-edit.component';
 import { EquipmentEditComponent } from './buffs/equipment/equipment-edit/equipment-edit.component';
 import { EquipmentDetailComponent } from './buffs/equipment/equipment-detail/equipment-detail.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 const appRoutes: Routes = [
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     { path: 'equipment/:id', component: EquipmentDetailComponent},
     { path: ':equipment/:id/edit', component: EquipmentEditComponent},
   ] },
-  { path: 'add-buff', component: AddBuffComponent}
+  { path: 'add-buff', component: AddBuffComponent},
+  { path: 'auth', component: AuthComponent}
 ];
 
 @NgModule({

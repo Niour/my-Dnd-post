@@ -21,6 +21,9 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { HttpClientModule} from '@angular/common/http';
 import { EquipmentEditComponent } from './buffs/equipment/equipment-edit/equipment-edit.component';
 import { EquipmentDetailComponent } from './buffs/equipment/equipment-detail/equipment-detail.component';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { EquipmentDetailComponent } from './buffs/equipment/equipment-detail/equ
     FilterPipe,
     EquipmentEditComponent,
     EquipmentDetailComponent,
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     FormsModule,
