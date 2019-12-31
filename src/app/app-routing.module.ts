@@ -8,12 +8,18 @@ import { SpellEditComponent } from './buffs/spell-edit/spell-edit.component';
 import { EquipmentEditComponent } from './buffs/equipment/equipment-edit/equipment-edit.component';
 import { EquipmentDetailComponent } from './buffs/equipment/equipment-detail/equipment-detail.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/buff-list', pathMatch: 'full' },
-  { path: 'buff-list', component: BuffsComponent, children: [
-    {path: '', component: BuffStartComponent },
+  {
+    path: '', redirectTo: '/buff-list', pathMatch: 'full' },
+  {
+    path: 'buff-list',
+    component: BuffsComponent,
+    canActivate: [AuthGuard],
+    children: [
+    { path: '', component: BuffStartComponent },
     { path: 'spell', redirectTo: '/buff-list', pathMatch: 'full' },
     { path: 'spell/newspell', component: SpellEditComponent},
     { path: 'spell/:id', component: BuffDetailComponent},
