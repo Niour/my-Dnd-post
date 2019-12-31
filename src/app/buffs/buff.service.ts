@@ -1,128 +1,105 @@
-import { Buff } from './buff.model';
-import { BuffValue } from './buffValue.model';
+import { Spell } from './models/spell.model';
+import { SpellValue } from './models/spellValue.model';
 import { RandomId } from '../shared/helper';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { Subject } from 'rxjs';
+import { Buffs } from '../shared/buffs';
+import { Equipment } from './models/equipment.model';
+import { AuthService } from '../auth/auth.service';
+import { take, exhaustMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class BuffService {
-    buffsChanged = new Subject<Buff[]>();
+    BuffsChanged = new Subject<Buffs>();
     // buffSelected = new Subject<Buff>();
-    // private buffs = [];
-    private buffs = [
-        new Buff(
-        'Bulls Strength',
-        RandomId(),
-        'min/level',
-        'spell',
-        2,
-        'Wizard',
-        [new BuffValue('strength', 'enchantment', 1, 'caster Level', 2),
-        new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
-        new BuffValue('constitution', 'enchantment', 1, 'caster Level', 2, 1, 3)],
-        'This is the Bulls Strenght')];
-        // new Buff(
-        //     'Bulls Strength',
-        //     RandomId(),
-        //     'min/level',
-        //     'spell',
-        //     2,
-        //     'Wizard',
-        //     [new BuffValue('strength', 'enchantment', 1, 'caster Level', 2),
-        //     new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
-        //     new BuffValue('constitution', 'enchantment', 1, 'caster Level', 2, 1, 3)],
-        //     'This is the Bulls Strenght'),
-        // new Buff(
-        //     'Cats Grace',
-        //     RandomId(),
-        //     'min/level',
-        //     'spell',
-        //     2,
-        //     'Wizard',
-        //     [new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 2, 2)],
-        //     'Test'
-        //     ),
-        //     new Buff(
-        //         'Test one',
-        //         RandomId(),
-        //         'min/level',
-        //         'condition',
-        //         2,
-        //         'Wizard',
-        //         [new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 2, 2)],
-        //         'Test'
-        //         ),
-        //         new Buff(
-        //             'Test two',
-        //             RandomId(),
-        //             'min/level',
-        //             'spell',
-        //             2,
-        //             'Wizard',
-        //             [new BuffValue('dexterity', 'enchantment', 1, 'caster Level', 2, 2, 2)],
-        //             'Test'
-        //             )
-        //     ];
 
-      constructor(private http: HttpClient) {}
+    private buffs: Buffs = {
+        spell: [
+            new Spell(
+            'Bulls Strength',
+            RandomId(),
+            'min/level',
+            'spell',
+            2,
+            'Wizard',
+            [new SpellValue('strength', 'enchantment', 1, 'caster Level', 2),
+            new SpellValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
+            new SpellValue('constitution', 'enchantment', 1, 'caster Level', 2, 1, 3)],
+            'This is the Bulls Strenght')],
+        equipment: [
+            new Equipment(
+            'Bulls Strength',
+            RandomId(),
+            1,
+            'equipment',
+            [new SpellValue('strength', 'enchantment', 1, 'caster Level', 2),
+            new SpellValue('dexterity', 'enchantment', 1, 'caster Level', 2, 1),
+            new SpellValue('constitution', 'enchantment', 1, 'caster Level', 2, 1, 3)],
+            'This is the Bulls Strenght')]
+        };
+
+      constructor(private http: HttpClient,
+                  private authService: AuthService) {}
+
+      getTypeBuffs() {
+        return new Object(
+            {
+                spell: this.buffs.spell.slice(),
+                equipment: this.buffs.equipment.slice()
+            }
+        ) as Buffs;
+      }
 
       getBuffs() {
-          return this.buffs.slice();
+        return this.getTypeBuffs();
       }
 
-      setBuffs(buffs: Buff[]) {
-          this.buffs = buffs;
-          this.buffsChanged.next(this.buffs.slice());
+      setBuffsSpells(buffs: Buffs) {
+          this.buffs.spell = buffs.spell;
+          this.BuffsChanged.next(this.getTypeBuffs());
       }
 
-      getBuff(index: number) {
-          return this.buffs[index];
-      }
-
-      addBuff(buff: Buff) {
-        this.buffs.push(buff);
-        this.buffsChanged.next(this.buffs.slice());
-      }
-
-      updateBuff(index: number, newBuff: Buff) {
-        this.buffs[index] = newBuff;
-        this.buffsChanged.next(this.buffs.slice());
-      }
-
-      deleteBuff(index: number) {
-          this.buffs.splice(index, 1);
-          this.buffsChanged.next(this.buffs.slice());
-      }
-
-      storeBuffs() {
-        this.http.put('https://react-dungeons-and-dragons.firebaseio.com/buffs.json',
-        this.buffs)
-          .subscribe(
-              (response => {
-                  console.log(response);
-              })
-          );
+      setBuffsEquipment(buffs: Buffs) {
+        this.buffs.equipment = buffs.equipment;
+        this.BuffsChanged.next(this.getTypeBuffs());
     }
 
-    fetchBuffs() {
-        this.http.get<Buff[]>('https://react-dungeons-and-dragons.firebaseio.com/buffs.json')
-            .subscribe(
-                buffs => {
-                    this.setBuffs(buffs);
-                }
-            );
+      getBuffSpell(index: number) {
+          return this.buffs.spell[index];
+      }
+
+      getBuffEquipment(index: number) {
+        return this.buffs.equipment[index];
     }
 
-    backup() {
-        this.http.post('https://react-dungeons-and-dragons.firebaseio.com/buffsBack.json',
-        this.buffs)
-          .subscribe(
-              (response => {
-                  console.log(response);
-              })
-          );
-    }
+      addBuffSpell(buff: Spell) {
+        this.buffs.spell.push(buff);
+        this.BuffsChanged.next(this.getTypeBuffs());
+      }
 
+      addBuffEquipment(buff: Equipment) {
+        this.buffs.equipment.push(buff);
+        this.BuffsChanged.next(this.getTypeBuffs());
+      }
+
+      updateBuffSpell(index: number, newBuff: Spell) {
+        this.buffs.spell[index] = newBuff;
+        this.BuffsChanged.next(this.getTypeBuffs());
+      }
+
+      updateBuffEquipment(index: number, newEquip: Equipment) {
+        this.buffs.equipment[index] = newEquip;
+        this.BuffsChanged.next(this.getTypeBuffs());
+      }
+
+      deleteBuffSpell(index: number) {
+          this.buffs.spell.splice(index, 1);
+          this.BuffsChanged.next(this.getTypeBuffs());
+      }
+
+      deleteBuffEquipment(index: number) {
+        this.buffs.equipment.splice(index, 1);
+        this.BuffsChanged.next(this.getTypeBuffs());
+    }
 }

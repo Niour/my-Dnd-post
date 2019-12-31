@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Spell } from '../models/spell.model';
-import { ActivatedRoute, Params, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { BuffService } from '../buff.service';
+import { ActivatedRoute, Params, Router, } from '@angular/router';
+import { BuffService } from '../../buff.service';
+import { Equipment } from '../../models/equipment.model';
 
 @Component({
-  selector: 'app-buff-detail',
-  templateUrl: './buff-detail.component.html',
-  styleUrls: ['./buff-detail.component.css']
+  selector: 'app-equipment-detail',
+  templateUrl: './equipment-detail.component.html',
+  styleUrls: ['./equipment-detail.component.css']
 })
-export class BuffDetailComponent implements OnInit {
-  buff: Spell;
+export class EquipmentDetailComponent implements OnInit {
+  buff: Equipment;
   id: number;
   constructor(private buffService: BuffService,
               private route: ActivatedRoute,
@@ -20,7 +20,7 @@ export class BuffDetailComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.id = +params.id;
-          this.buff = this.buffService.getBuffSpell(this.id);
+          this.buff = this.buffService.getBuffEquipment(this.id);
         }
       );
   }
@@ -30,7 +30,7 @@ export class BuffDetailComponent implements OnInit {
   }
 
   onDeleteBuff() {
-    this.buffService.deleteBuffSpell(this.id);
+    this.buffService.deleteBuffEquipment(this.id);
     this.router.navigate(['buff-list']);
   }
 

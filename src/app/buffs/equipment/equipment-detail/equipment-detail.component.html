@@ -1,0 +1,21 @@
+<div class="list-item clearfix">
+    <h4 class="list-group-item-heading"><b> {{buff.name}} </b> </h4>
+    <br>
+    <p class="list-group-item-text"> {{buff.notes}} </p>
+    <hr>
+    <div class="list-group-item-text" *ngFor="let value of buff.value"> <b>{{value.value1}} {{value.name}} </b> of type {{value.type}}
+                                        {{ value.value2 ? 'for every ' + value.value2 + ' caster level ': null }} {{ value.value3 ? 'starting at level ' + value.value3 + ' and after': '' }}
+    </div>
+</div>
+<br>
+<div class="btn-group open" appDropdown>
+<button 
+    type="button" 
+    class="btn btn-primary dropdown-toggle">
+    Manage Buff <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+    <li><a style="cursor: pointer" (click)="onEditBuff()">Edit Equipment</a></li>
+    <li><a style="cursor: pointer" (click)="onDeleteBuff()">Delete Buff</a></li>
+</ul>
+</div>

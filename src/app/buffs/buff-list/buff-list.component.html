@@ -1,26 +1,35 @@
-<button class="btn btn-success" (click)="onNewBuff()"> New Buff </button>
-<div class="btn-group" dropdown>
-    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-          aria-controls="dropdown-basic">
-          {{selected ? selected : 'Buff Type'}} <span class="caret"></span>
-  </button>
-  <label for="filter">filter</label>
-  <input id="filter" type="text" [(ngModel)]="filteredType">
-  <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
-      role="menu" aria-labelledby="button-basic">
-    <li role="menuitem" *ngFor="let item of buffTypes; let i = index ">
-        <a class="dropdown-item" (click)="filterType(buffTypes[i])">
-        {{item}}
-        </a>
-    </li>
-  </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-success" (click)="onNewBuff(selected)"> New {{ selected}} </button>
+      <div class="btn-group" dropdown>
+          <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                aria-controls="dropdown-basic" (click)="onSwitchType()">
+                {{selected ? selected : 'Buff Type'}} <span class="caret"></span>
+        </button>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-basic">
+          <li role="menuitem" *ngFor="let item of buffTypes; let i = index ">
+              <a class="dropdown-item" (click)="filterType(buffTypes[i])">
+              {{item}}
+              </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="padding-top: 5px;">
+    <div class="row-xs-12">
+      <label for="filter">filter</label>
+      <input id="filter" type="text" [(ngModel)]="filteredType">
+    </div>
+  </div>
 </div>
-
 <hr>
 <div class="row">
         <div class="col-xs-8">
             <app-buff-item-ii 
-            *ngFor="let buffEl of buffs | filter:selected:'type' | filter:filteredType:'name'" 
+            *ngFor="let buffEl of buffs[selected] | filter:selected:'type' | filter:filteredType:'name'" 
             [buff]="buffEl"
             [index]="getindex(buffEl.id)"
             >

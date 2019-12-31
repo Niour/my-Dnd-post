@@ -1,13 +1,13 @@
-import { BuffValue } from './buffValue.model';
+import { SpellValue } from './spellValue.model';
 
-export class Buff {
+export class Spell {
     public name: string;
     public id: string;
     public duration: string;
     public type: string;
     public level: number;
     public clas: string;
-    public value: BuffValue[];
+    public value: SpellValue[];
     public notes: string;
 
     constructor(name: string,
@@ -16,7 +16,7 @@ export class Buff {
                 type: string,
                 level: number,
                 clas: string,
-                value: BuffValue[],
+                value: SpellValue[],
                 notes?: string) {
             this.name = name;
             this.id = id;

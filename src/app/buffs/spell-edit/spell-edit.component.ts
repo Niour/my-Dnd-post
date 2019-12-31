@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, FormGroup, FormArray, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { BuffService } from '../buff.service';
-import { Buff } from '../buff.model';
+import { Spell } from '../models/spell.model';
 import { RandomId } from 'src/app/shared/helper';
 
 @Component({
-  selector: 'app-buff-edit',
-  templateUrl: './buff-edit.component.html',
-  styleUrls: ['./buff-edit.component.css']
+  selector: 'app-spell-edit',
+  templateUrl: './spell-edit.component.html',
+  styleUrls: ['./spell-edit.component.css']
 })
-export class BuffEditComponent implements OnInit {
-  buffTypes = ['spell', 'condition', 'Class ab.', 'mode']; // type
+export class SpellEditComponent implements OnInit {
+  buffTypes = ['spell']; // type
   clas = ['Wizard', 'Sorcerer', 'Bard', 'Cleric']; // clas
   buffName = ['caster Level', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma',
   'attack', 'damage', 'grapple', 'ac', 'fort', 'ref', 'will'];
@@ -58,7 +58,7 @@ export class BuffEditComponent implements OnInit {
 
   onCancel() {
     console.log('inside onCancel');
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['../../'], {relativeTo: this.route});
   }
 
   private initForm() {
@@ -72,7 +72,7 @@ export class BuffEditComponent implements OnInit {
     let buffnotes = '';
 
     if (this.editMode) {
-      const buff = this.buffService.getBuff(this.id);
+      const buff = this.buffService.getBuffSpell(this.id);
       buffName = buff.name;
       buffDuration = buff.duration;
       bufftype = buff.type;
@@ -114,11 +114,11 @@ export class BuffEditComponent implements OnInit {
     console.log(this.buffForm.value);
     let newId;
     if (this.editMode) {
-      newId = this.buffService.getBuff(this.id).id;
+      newId = this.buffService.getBuffSpell(this.id).id;
     } else {
       newId = RandomId();
     }
-    const newBuff = new Buff(
+    const newBuff = new Spell(
       this.buffForm.value.name,
       newId,
       this.buffForm.value.duration,
@@ -129,9 +129,9 @@ export class BuffEditComponent implements OnInit {
       this.buffForm.value.notes
     );
     if (this.editMode) {
-      this.buffService.updateBuff(this.id, newBuff);
+      this.buffService.updateBuffSpell(this.id, newBuff);
     } else {
-      this.buffService.addBuff(newBuff);
+      this.buffService.addBuffSpell(newBuff);
     }
     this.onCancel();
   }

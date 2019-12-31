@@ -1,0 +1,156 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="buffForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" [disabled]="!buffForm.valid" class="btn btn-success"> Save </button>
+                    <button type="button" class="btn btn-danger" (click)="onCancel()"> Cancel </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="buffName">Name</label>
+                        <input 
+                        type="text" 
+                        id="buffName"
+                        formControlName="name"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <input 
+                            type="text"
+                            id="type"
+                            [typeahead]="buffTypes"
+                            [typeaheadOptionsLimit]="20"
+                            [typeaheadMinLength]="0"
+                            placeholder="Pick one"
+                            formControlName="type"
+                            class="form-control"
+                            autocomplete="off">
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="dexterityMod">Max Dexterity modifiler</label>
+                    <input 
+                    type="number"
+                    id="dexterityMod"
+                    formControlName="dexterityMod"
+                    class="form-control"
+                    autocomplete="off">
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                            <textarea 
+                            type="text" 
+                            id="notes"
+                            formControlName="notes"
+                            class="form-control"
+                            rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+            <h4>Stats Values</h4>
+            <div formArrayName="valueBuffs">
+                <div class="row"
+                *ngFor="let buffsCtrl of getControls().controls; let i = index"
+                style="border: solid thin #32a1ce;padding: 10px; margin-bottom: 5px;"
+                [formGroupName]="i">
+                    <div class="row">
+                        <div>
+                            <div class="form-group col-xs-4">
+                                <label for="valueName">Buff Name</label>
+                                <input 
+                                type="text"
+                                id="valueName"
+                                [typeahead]="buffName"
+                                [typeaheadOptionsLimit]="20"
+                                [typeaheadMinLength]="0"
+                                formControlName="name"
+                                class="form-control"
+                                autocomplete="off">
+                            </div>
+                            <div class="form-group col-xs-4">
+                                <label for="type">Buff Type</label>
+                                <input 
+                                type="text"
+                                id="type"
+                                [typeahead]="bonusesTypes"
+                                [typeaheadOptionsLimit]="20"
+                                [typeaheadMinLength]="0"
+                                formControlName="type"
+                                class="form-control"
+                                autocomplete="off">
+                            </div>
+                            <div class="col-xs-2" style="padding-top: 15px;">
+                                <button class="btn btn-danger" type="button" (click)="onDeleteValue(i)">
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 form-group">
+                            <p>How much does it give flat?</p>
+                            <label for="value1">Flat Value</label>
+                            <input 
+                            type="number" 
+                            id="value1"
+                            formControlName="value1"
+                            class="form-control">
+                        </div>
+                        <div class="col-xs-4 form-group">
+                                <p>Does caster Level  give more or does something special give more?</p>
+                                <label for="buffSpecial">Does it? </label>
+                                <input 
+                                type="text" 
+                                id="buffSpecial"
+                                [typeahead]="buffName"
+                                [typeaheadOptionsLimit]="20"
+                                [typeaheadMinLength]="0"
+                                formControlName="special"
+                                class="form-control"
+                                [dropup]="true"
+                                autocomplete="off">
+                            </div>
+                        <div class="col-xs-4 form-group">
+                                <p>If caster Level gives more, at what Caster Level and above it counts?</p>
+                                <label for="value2">At Level</label>
+                                <input 
+                                type="number" 
+                                id="value2"
+                                formControlName="value2"
+                                class="form-control">
+                            </div>
+                                <div class="col-xs-2 form-group">
+                                        <p>Every how many levels if Caster Level?</p>
+                                        <label for="value3">Every ... </label>
+                                        <input 
+                                        type="number" 
+                                        id="value3"
+                                        formControlName="value3"
+                                        class="form-control">
+                                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <button class="btn btn-success" type="button" (click)="onAddValue()"> Add New Value </button>
+                </div>
+            </div>
+        </form>
+    <div>
+</div>
