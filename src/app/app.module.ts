@@ -26,6 +26,7 @@ import { AuthInterceptorService } from './auth/auth-intercetor.service';
 import { AlertComponent } from './shared/alert/alert.component';
 import { BattleTrackerComponent } from './battle-tracker/battle-tracker.component';
 import { CharacterItemComponent } from './battle-tracker/character-item/character-item.component';
+import { CharacterService } from './battle-tracker/character.service';
 
 @NgModule({
   declarations: [
@@ -57,12 +58,14 @@ import { CharacterItemComponent } from './battle-tracker/character-item/characte
     TypeaheadModule.forRoot(),
     BsDropdownModule.forRoot()
   ],
-  providers: [BuffService,
+  providers: [
+    BuffService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    CharacterService
   ],
   bootstrap: [AppComponent]
 })

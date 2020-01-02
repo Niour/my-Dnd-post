@@ -5,12 +5,12 @@ export class Character {
     public id: string;
     public initiative: number;
     public hitpoints: number;
-    public strength: string;
-    public dexterity: string;
-    public constitution: string;
-    public intelligence: string;
-    public wisdom: string;
-    public charisma: string;
+    public strength: number;
+    public dexterity: number;
+    public constitution: number;
+    public intelligence: number;
+    public wisdom: number;
+    public charisma: number;
     public buffs: Buffs;
     public baseStrength: number;
     public baseDexterity: number;
@@ -42,12 +42,12 @@ export class Character {
         id: string,
         initiative: number,
         hitpoints: number,
-        strength: string,
-        dexterity: string,
-        constitution: string,
-        intelligence: string,
-        wisdom: string,
-        charisma: string,
+        strength: number,
+        dexterity: number,
+        constitution: number,
+        intelligence: number,
+        wisdom: number,
+        charisma: number,
         buffs: Buffs,
         baseStrength: number,
         baseDexterity: number,

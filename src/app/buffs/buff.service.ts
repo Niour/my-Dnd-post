@@ -7,7 +7,6 @@ import { Injectable } from '@angular/core';
 import { Buffs } from '../shared/buffs';
 import { Equipment } from './models/equipment.model';
 import { AuthService } from '../auth/auth.service';
-import { take, exhaustMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class BuffService {
@@ -39,8 +38,7 @@ export class BuffService {
             'This is the Bulls Strenght')]
         };
 
-      constructor(private http: HttpClient,
-                  private authService: AuthService) {}
+      constructor() {}
 
       getTypeBuffs() {
         return new Object(
