@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BuffService } from '../buffs/buff.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 import { DataStorageService } from '../shared/data.service';
@@ -14,7 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   collapsed = true;
 
-  constructor(private buffService: BuffService,
+  constructor(
               private authService: AuthService,
               private dataStorageService: DataStorageService) { }
 

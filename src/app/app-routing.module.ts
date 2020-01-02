@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BuffsComponent } from './buffs/buffs.component';
-import { AddBuffComponent } from './add-buff/add-buff.component';
 import { BuffStartComponent } from './buffs/buff-start/buff-start.component';
 import { BuffDetailComponent } from './buffs/buff-detail/buff-detail.component';
 import { SpellEditComponent } from './buffs/spell-edit/spell-edit.component';
@@ -9,6 +8,7 @@ import { EquipmentEditComponent } from './buffs/equipment/equipment-edit/equipme
 import { EquipmentDetailComponent } from './buffs/equipment/equipment-detail/equipment-detail.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
+import { BattleTrackerComponent } from './battle-tracker/battle-tracker.component';
 
 
 const appRoutes: Routes = [
@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     { path: 'equipment/:id', component: EquipmentDetailComponent},
     { path: ':equipment/:id/edit', component: EquipmentEditComponent},
   ] },
-  { path: 'add-buff', component: AddBuffComponent},
+  { path: 'battle-tracker', component: BattleTrackerComponent},
   { path: 'auth', component: AuthComponent}
 ];
 

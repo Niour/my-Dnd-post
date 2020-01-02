@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
       <button class="btn btn-success" (click)="onNewBuff(selected)"> New {{ selected}} </button>
@@ -24,15 +24,15 @@
       <input id="filter" type="text" [(ngModel)]="filteredType">
     </div>
   </div>
-</div>
 <hr>
-<div class="row">
-        <div class="col-xs-8">
-            <app-buff-item-ii 
-            *ngFor="let buffEl of buffs[selected] | filter:selected:'type' | filter:filteredType:'name'" 
-            [buff]="buffEl"
-            [index]="getindex(buffEl.id)"
-            >
-        </app-buff-item-ii>
-        </div>
+  <div class="row">
+    <div class="col-md-7 list-group" >
+        <app-buff-item-ii 
+        *ngFor="let buffEl of buffs[selected] | filter:selected:'type' | filter:filteredType:'name'" 
+        [buff]="buffEl"
+        [index]="getindex(buffEl.id)"
+        >
+      </app-buff-item-ii>
+    </div>
+  </div>
 </div>

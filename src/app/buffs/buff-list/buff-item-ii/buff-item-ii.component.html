@@ -1,11 +1,11 @@
-<a 
+<div 
         class="list-group-item clearfix"
         [routerLink]="[buff.type, index]"
         routerLinkActive="active">
-        <div 
+        <div class="col-md-7"
         style="cursor: pointer;">
                 <h4 class="list-group-item-heading"><b> {{buff.name}}</b> </h4>
                 <p class="list-group-item-text"> {{buff.type}} </p>
                 <p class="list-group-item-text" *ngIf="buff.type==='spell'"> Class: {{buff.clas}} {{buff.level}} </p>
         </div>
-</a>
+</div>

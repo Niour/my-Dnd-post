@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { AddBuffComponent } from './add-buff/add-buff.component';
 import { BuffListComponent } from './buffs/buff-list/buff-list.component';
 import { BuffDetailComponent } from './buffs/buff-detail/buff-detail.component';
 import { BuffsComponent } from './buffs/buffs.component';
@@ -25,13 +24,14 @@ import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-intercetor.service';
 import { AlertComponent } from './shared/alert/alert.component';
+import { BattleTrackerComponent } from './battle-tracker/battle-tracker.component';
+import { CharacterItemComponent } from './battle-tracker/character-item/character-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DropdownDirective,
-    AddBuffComponent,
     BuffListComponent,
     BuffDetailComponent,
     BuffsComponent,
@@ -43,7 +43,9 @@ import { AlertComponent } from './shared/alert/alert.component';
     EquipmentDetailComponent,
     AuthComponent,
     LoadingSpinnerComponent,
-    AlertComponent
+    AlertComponent,
+    BattleTrackerComponent,
+    CharacterItemComponent
   ],
   imports: [
     FormsModule,
