@@ -36,6 +36,7 @@ export class Character {
     public touchAc: number;
     public flatfoodedAc: number;
     public maxDex: number;
+    public hitpointsMax: number;
 
     constructor(
         name: string,
@@ -73,6 +74,7 @@ export class Character {
         touchAc: number,
         flatfoodedAc: number,
         maxDex: number,
+        hitpointsMax: number
     ) {
         this.name = name;
         this.id = id;
@@ -109,5 +111,6 @@ export class Character {
         this.touchAc = touchAc;
         this.flatfoodedAc = flatfoodedAc;
         this.maxDex = maxDex;
+        this.hitpointsMax = hitpointsMax;
     }
 }

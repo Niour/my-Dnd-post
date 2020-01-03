@@ -10,6 +10,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 import { BattleTrackerComponent } from './battle-tracker/battle-tracker.component';
 import { CharacterStartComponent } from './battle-tracker/character-start/character-start.component';
+import { CharacterDetailComponent } from './battle-tracker/character-detail/character-detail.component';
 
 
 const appRoutes: Routes = [
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
   canActivate: [AuthGuard],
   children: [
     { path: '', component: CharacterStartComponent },
-    { path: ':id', component: CharacterStartComponent }
+    { path: ':id', component: CharacterDetailComponent }
   ]
   },
   { path: 'auth', component: AuthComponent}

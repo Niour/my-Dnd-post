@@ -25,4 +25,16 @@ export class BattleTrackerComponent implements OnInit {
       );
     this.characters = this.characterService.getCharacters();
   }
+
+  onNewChatacter() {
+    this.characterService.createNewCharacter();
+  }
+
+  getIndex(character: Character) {
+    let elementIndex = 0;
+    elementIndex = this.characters.findIndex(element => {
+      return character.id === element.id;
+      });
+    return elementIndex;
+  }
 }

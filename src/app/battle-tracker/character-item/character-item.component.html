@@ -1,7 +1,7 @@
-<a
+<div
         class="list-group-item clearfix character"
-        [routerLink]="[character.id]"
-        routerLinkActive="active"
+        [routerLink]="[index]"
+        routerLinkActive="activePlayer"
         style="cursor: pointer;">
         <div class="col-md-3 col-xs-3"
         style="cursor: pointer; margin-top: 10px;">
@@ -15,8 +15,8 @@
             <input 
                 style="font-size: x-large; font-weight: 700; width: 80%; text-align: center;"
                 type="number" 
-                id="initiative"
-                [placeholder]="character.initiative">
+                id="hitpoints"
+                [value]="character.hitpoints">
         </div>
         <div class="col-md-2  col-xs-2">
             <label 
@@ -27,7 +27,7 @@
                 style="font-size: larger; font-weight: 700; width: 80%; text-align: center;"
                 type="number" 
                 id="initiative"
-                [placeholder]="character.initiative">
+                [value]="character.initiative">
         </div>
         <div class="col-md-5 col-md-5">
             <div class="row">
@@ -44,4 +44,4 @@
                 </button>
             </div>
         </div>
-    </a>
+    </div>

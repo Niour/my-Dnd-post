@@ -1,0 +1,9 @@
+.activePlayer {
+    background-color: #337ab7;
+    border-color: #337ab7;
+    color: aliceblue;
+}
+
+input {
+    color: black;
+}

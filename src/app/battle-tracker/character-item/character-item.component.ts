@@ -8,6 +8,7 @@ import { Character } from 'src/app/shared/character';
 })
 export class CharacterItemComponent implements OnInit {
   @Input() character: Character;
+  @Input() index: number;
 
   constructor() { }
 

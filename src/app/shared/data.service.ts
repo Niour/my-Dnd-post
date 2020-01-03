@@ -31,6 +31,7 @@ export class DataStorageService {
         .subscribe(data => {
             this.buffService.setBuffsEquipment(data.buffs);
             this.buffService.setBuffsSpells(data.buffs);
+            this.characterService.setCharacters(data.characters);
         });
     }
 

@@ -55,6 +55,5 @@ export class BuffListComponent implements OnInit, OnDestroy {
       return id === element.id;
       });
     return elementIndex;
-
   }
 }

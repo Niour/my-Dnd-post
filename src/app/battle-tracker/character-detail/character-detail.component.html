@@ -1,1 +1,35 @@
-<p>character-detail works!</p>
+<h2> {{character.name}} </h2>
+
+<div class="row">
+    <div class="col-md-2">
+        <p>
+            Strength: {{ character.strength }}
+        </p>
+        <p>
+            Dexterity: {{ character.dexterity }}
+        </p>
+        <p>
+            Constitution: {{ character.constitution }}
+        </p>
+        <p>
+            Intelligence: {{ character.intelligence }}
+        </p>
+        <p>
+            Wisdom: {{ character.wisdom }}
+        </p>
+        <p>
+            Charisma: {{ character.charisma }}
+        </p>
+    </div>
+    <div class="col-md-5">
+        <p>
+            Fort: {{character.fort}}
+        </p>
+        <p>
+            Ref: {{character.ref}}
+        </p>
+        <p>
+            Will: {{character.will}}
+        </p>
+    </div>
+</div>

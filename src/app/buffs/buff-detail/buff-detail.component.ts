@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Spell } from '../models/spell.model';
-import { ActivatedRoute, Params, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BuffService } from '../buff.service';
 
 @Component({
