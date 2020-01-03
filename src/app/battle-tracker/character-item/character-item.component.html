@@ -1,22 +1,47 @@
-<div
+<a
         class="list-group-item clearfix character"
-        routerLinkActive="active">
-        <div class="col-md-5"
+        [routerLink]="[character.id]"
+        routerLinkActive="active"
+        style="cursor: pointer;">
+        <div class="col-md-3 col-xs-3"
         style="cursor: pointer; margin-top: 10px;">
                 <h4 class="list-group-item-heading"><b> {{character.name}}</b> </h4>
         </div>
-        <div class="col-md-5 col-xs-5">
+        <div class="col-md-2 col-xs-2">
             <label 
-                for="initiative"> Initiative</label>
+                style="font-size: larger;"
+                for="initiative">
+                HP:</label>
             <input 
+                style="font-size: x-large; font-weight: 700; width: 80%; text-align: center;"
                 type="number" 
                 id="initiative"
                 [placeholder]="character.initiative">
         </div>
-        <button class="col-md-2 col-xs-2">
-            X
-        </button>
-</div>
-<div>
-</div>
-
+        <div class="col-md-2  col-xs-2">
+            <label 
+                style="font-size: larger;"
+                for="initiative">
+                Init:</label>
+            <input 
+                style="font-size: larger; font-weight: 700; width: 80%; text-align: center;"
+                type="number" 
+                id="initiative"
+                [placeholder]="character.initiative">
+        </div>
+        <div class="col-md-5 col-md-5">
+            <div class="row">
+                <button class="btn btn-danger">
+                    Remove 
+                </button>
+                <button class="btn btn-warning">
+                    Edit
+                </button>
+            </div>
+            <div class="row">
+                <button class="btn btn-success">
+                    Buffs
+                </button>
+            </div>
+        </div>
+    </a>

@@ -27,6 +27,8 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { BattleTrackerComponent } from './battle-tracker/battle-tracker.component';
 import { CharacterItemComponent } from './battle-tracker/character-item/character-item.component';
 import { CharacterService } from './battle-tracker/character.service';
+import { CharacterDetailComponent } from './battle-tracker/character-detail/character-detail.component';
+import { CharacterStartComponent } from './battle-tracker/character-start/character-start.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { CharacterService } from './battle-tracker/character.service';
     LoadingSpinnerComponent,
     AlertComponent,
     BattleTrackerComponent,
-    CharacterItemComponent
+    CharacterItemComponent,
+    CharacterDetailComponent,
+    CharacterStartComponent
   ],
   imports: [
     FormsModule,

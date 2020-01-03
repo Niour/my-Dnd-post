@@ -9,6 +9,7 @@ import { EquipmentDetailComponent } from './buffs/equipment/equipment-detail/equ
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 import { BattleTrackerComponent } from './battle-tracker/battle-tracker.component';
+import { CharacterStartComponent } from './battle-tracker/character-start/character-start.component';
 
 
 const appRoutes: Routes = [
@@ -29,7 +30,14 @@ const appRoutes: Routes = [
     { path: 'equipment/:id', component: EquipmentDetailComponent},
     { path: ':equipment/:id/edit', component: EquipmentEditComponent},
   ] },
-  { path: 'battle-tracker', component: BattleTrackerComponent},
+  { path: 'battle-tracker',
+  component: BattleTrackerComponent,
+  canActivate: [AuthGuard],
+  children: [
+    { path: '', component: CharacterStartComponent },
+    { path: ':id', component: CharacterStartComponent }
+  ]
+  },
   { path: 'auth', component: AuthComponent}
 ];
 

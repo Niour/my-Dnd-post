@@ -57,7 +57,6 @@ export class CharacterService {
         )
     ];
 
-
     setCharacters(charactersInput: Character[]) {
         this.characters = charactersInput;
     }
