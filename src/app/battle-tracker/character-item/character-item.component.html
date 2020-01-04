@@ -7,7 +7,7 @@
         style="cursor: pointer; margin-top: 10px;">
                 <h4 class="list-group-item-heading"><b> {{character.name}}</b> </h4>
         </div>
-        <div class="col-md-2 col-xs-2">
+        <div class="col-md-3 col-xs-3">
             <label 
                 style="font-size: larger;"
                 for="initiative">
@@ -16,7 +16,8 @@
                 style="font-size: x-large; font-weight: 700; width: 80%; text-align: center;"
                 type="number" 
                 id="hitpoints"
-                [value]="character.hitpoints">
+                [value]="hitpoints"
+                (input)="onUpdateHitpoints($event.target.value)">
         </div>
         <div class="col-md-2  col-xs-2">
             <label 
@@ -27,9 +28,10 @@
                 style="font-size: larger; font-weight: 700; width: 80%; text-align: center;"
                 type="number" 
                 id="initiative"
-                [value]="character.initiative">
+                [value]="character.initiative"
+                (input)="onUpdateInitiative($event.target.value)">
         </div>
-        <div class="col-md-5 col-md-5">
+        <div class="col-md-4 col-md-4">
             <div class="row">
                 <button class="btn btn-danger">
                     Remove 

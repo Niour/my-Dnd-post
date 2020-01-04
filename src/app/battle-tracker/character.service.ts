@@ -14,7 +14,7 @@ export class CharacterService {
             'Rizzla',
             'Id test 966',
             2,
-            100,
+            99,
             15, 15, 15, 15, 15, 15,
             {spell: [
                 new Spell(
@@ -116,4 +116,20 @@ export class CharacterService {
         this.characters.push(newPlayer);
         this.characterChanged.next(this.getCharacters());
     }
+
+    updateCharacter(index: number, newCharacter: Character) {
+        this.characters[index] = newCharacter;
+        console.log(newCharacter);
+        this.characterChanged.next(this.getCharacters());
+    }
+
+    updateInitiative(index: number, newCharacter: Character) {
+        this.characters[index] = newCharacter;
+        this.characters.sort((a, b) => b.initiative - a.initiative);
+        this.characterChanged.next(this.getCharacters());
+    }
+    // There is a bug where routerLinkActive does not render even if we navigate to a new Route
+    // with router.navigate method. This has to be a case of race and i letted this way because
+    // the css is preferable from just stick to the wrong url
 }
+
