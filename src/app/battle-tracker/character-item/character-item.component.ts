@@ -17,12 +17,11 @@ export class CharacterItemComponent implements OnInit {
 
   constructor(
               private characterService: CharacterService,
-              private router: Router,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private router: Router
   ) { }
 
   ngOnInit() {
-    this.hitpoints = this.character.hitpoints;
   }
 
   onUpdateHitpoints(eventNumber: number) {
@@ -43,5 +42,14 @@ export class CharacterItemComponent implements OnInit {
         this.characterService.updateInitiative(this.index, this.character);
       }
     , 500);
+  }
+
+  onRemove() {
+    this.characterService.deleteCharacter(this.index);
+    this.router.navigate(['battle-tracker']);
+  }
+
+  onEdit() {
+    this.router.navigate([`${this.index}/edit`], { relativeTo: this.route});
   }
 }

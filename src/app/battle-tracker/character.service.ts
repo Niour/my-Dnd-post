@@ -131,5 +131,10 @@ export class CharacterService {
     // There is a bug where routerLinkActive does not render even if we navigate to a new Route
     // with router.navigate method. This has to be a case of race and i letted this way because
     // the css is preferable from just stick to the wrong url
+
+    deleteCharacter(index: number) {
+        this.characters.splice(index, 1);
+        this.characterChanged.next(this.getCharacters());
+    }
 }
 

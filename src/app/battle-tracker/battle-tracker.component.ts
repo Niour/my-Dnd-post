@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CharacterService } from './character.service';
 import { Character } from '../shared/character';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './battle-tracker.component.html',
   styleUrls: ['./battle-tracker.component.css']
 })
-export class BattleTrackerComponent implements OnInit {
+export class BattleTrackerComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   characters: Character[];
 
@@ -36,5 +36,9 @@ export class BattleTrackerComponent implements OnInit {
       return character.id === element.id;
       });
     return elementIndex;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

@@ -29,6 +29,7 @@ import { CharacterItemComponent } from './battle-tracker/character-item/characte
 import { CharacterService } from './battle-tracker/character.service';
 import { CharacterDetailComponent } from './battle-tracker/character-detail/character-detail.component';
 import { CharacterStartComponent } from './battle-tracker/character-start/character-start.component';
+import { CharacterEditComponent } from './battle-tracker/character-edit/character-edit.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CharacterStartComponent } from './battle-tracker/character-start/charac
     BattleTrackerComponent,
     CharacterItemComponent,
     CharacterDetailComponent,
-    CharacterStartComponent
+    CharacterStartComponent,
+    CharacterEditComponent
   ],
   imports: [
     FormsModule,

@@ -11,6 +11,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { BattleTrackerComponent } from './battle-tracker/battle-tracker.component';
 import { CharacterStartComponent } from './battle-tracker/character-start/character-start.component';
 import { CharacterDetailComponent } from './battle-tracker/character-detail/character-detail.component';
+import { CharacterEditComponent } from './battle-tracker/character-edit/character-edit.component';
 
 
 const appRoutes: Routes = [
@@ -29,14 +30,15 @@ const appRoutes: Routes = [
     { path: 'equipment', redirectTo: '/buff-list', pathMatch: 'full' },
     { path: 'equipment/newequipment', component: EquipmentEditComponent},
     { path: 'equipment/:id', component: EquipmentDetailComponent},
-    { path: ':equipment/:id/edit', component: EquipmentEditComponent},
+    { path: 'equipment/:id/edit', component: EquipmentEditComponent},
   ] },
   { path: 'battle-tracker',
   component: BattleTrackerComponent,
   canActivate: [AuthGuard],
   children: [
     { path: '', component: CharacterStartComponent },
-    { path: ':id', component: CharacterDetailComponent }
+    { path: ':id', component: CharacterDetailComponent },
+    { path: ':id/edit', component: CharacterEditComponent }
   ]
   },
   { path: 'auth', component: AuthComponent}
